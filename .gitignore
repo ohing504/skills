@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Editor swap files
+*.swp
+*.swo
+
+# oh-my-claudecode runtime state
+.omc/
+
+# Installed skills and lock file
+.agents/
+skills-lock.json
+
+# Claude Code local config and dev tools
+.claude/
+
+# skill-creator eval workspaces
+*-workspace/

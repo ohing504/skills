@@ -24,3 +24,63 @@ Most users will have already run the `agent-reference` skill to generate reports
 ---
 
 ## Step 1: Collect Inputs
+
+This step gathers all data needed to generate the portfolio. Guide the user through each input:
+
+**1. Agent-reference reports (required)**
+- Ask the user where their report files are
+- Expected structure: markdown files from agent-reference Phase 1 and optionally Phase 2
+- If no reports exist, suggest running the `agent-reference` skill first and stop here
+
+**2. Resume / self-introduction (optional)**
+- Ask if they have a resume, CV, or self-intro to include
+- This populates the "About" section
+- Any format (markdown, PDF text, plain text)
+
+**3. GitHub data (optional)**
+- Check `gh auth status` to see if gh CLI is available
+- If available, offer to pull: contribution calendar, repo list, language stats
+- Reference: `gh api graphql` for contribution data, `gh repo list` for repos
+
+**4. Existing portfolio materials (optional)**
+- Any existing site content, project descriptions, or images to incorporate
+
+### Set Up the Repository
+
+After collecting inputs, help the user create the portfolio repo:
+
+**Option B: Private repo (Recommended)**
+```bash
+gh repo create {username}/portfolio --private --clone
+cd portfolio
+```
+- Reports stay private, only built site is public
+- GitHub Actions will build and deploy to Pages
+- User controls which reports appear on the Raw Data page
+
+**Option A: Public repo (Simple)**
+```bash
+gh repo create {username}/{username}.github.io --public --clone
+cd {username}.github.io
+```
+- Simplest setup — repo IS the site
+- All reports visible in git history
+- Fine if user has no private repo content
+
+### Organize Reports
+
+Copy reports into the repo:
+```
+reports/
+├── {date}-{agent-name}/
+│   ├── user-profile.md
+│   ├── project-{name}.md
+│   └── ...
+└── aggregated/          (if Phase 2 was run)
+    ├── aggregated-profile.md
+    ├── faq.md
+    ├── blog-topics.md
+    └── introduced-by-agents.md
+```
+
+If the user provides a resume, save it as `resume.md` in the repo root.

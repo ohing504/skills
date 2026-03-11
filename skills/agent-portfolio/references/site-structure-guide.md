@@ -192,7 +192,7 @@ interface Props {
 **Required:** Yes
 **Content:**
 ```
-Introduced by My Agents · Built with agent-reference
+Introduced by My Agents · Built with @ohing504/skills
 Last updated: {build date}
 ```
 - Link to agent-reference skill repo (https://github.com/ohing504/skills)

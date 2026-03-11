@@ -151,8 +151,10 @@ Read `references/site-structure-guide.md` for complete component specifications.
 ```bash
 npm create astro@latest -- --template minimal --no-install
 npm install
-npx astro add tailwind
+npm install tailwindcss @tailwindcss/vite
 ```
+
+> **Warning:** Do NOT use `npx astro add tailwind` — it installs `@astrojs/tailwind` (Tailwind 3 integration) which conflicts with Tailwind 4. Install `@tailwindcss/vite` directly instead.
 
 ### Generate Components
 
@@ -162,6 +164,7 @@ Based on the approved concept and available data, generate these components:
 |-----------|------------|----------|
 | Hero.astro | aggregated profile or first user-profile report | Yes |
 | About.astro | materials/resume (any format) | Only if resume provided |
+| Career.astro | materials/resume (career/experience section) | Only if resume has career data |
 | AgentReviews.astro | user-profile reports (persona sections) | Yes |
 | Projects.astro | project-*.md reports | Yes |
 | WorkStyle.astro | analysis dimensions from profiles | Yes |

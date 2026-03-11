@@ -8,8 +8,10 @@ When scaffolding, use:
 ```bash
 npm create astro@latest -- --template minimal --no-install
 npm install
-npx astro add tailwind
+npm install tailwindcss @tailwindcss/vite
 ```
+
+> **Warning:** Do NOT use `npx astro add tailwind` — it installs `@astrojs/tailwind` (Tailwind 3 integration) which conflicts with Tailwind 4. Install `@tailwindcss/vite` directly instead.
 
 ### Directory Structure
 
@@ -25,6 +27,7 @@ npx astro add tailwind
 │   ├── components/
 │   │   ├── Hero.astro                 # Hero section
 │   │   ├── About.astro                # About/resume section
+│   │   ├── Career.astro               # Career timeline section
 │   │   ├── AgentReviews.astro         # Agent persona review cards
 │   │   ├── Projects.astro             # Project highlight cards
 │   │   ├── WorkStyle.astro            # Work style radar/visualization
@@ -73,8 +76,25 @@ npx astro add tailwind
 **Data needed:** Resume file from `materials/` (any format — PDF, Markdown, text)
 **Required:** No (only if resume provided)
 **Content:**
-- Parsed resume/self-introduction
+- Self-introduction / summary from resume header (who they are, what they value)
+- Education and certifications (if available in resume)
+- Skills/tech stack overview
 - Can include profile image if provided in `materials/`
+- Note: Career timeline goes in Career.astro, not here
+
+### Career.astro
+**Data needed:** Resume file from `materials/` — specifically career/experience sections
+**Required:** No (only if resume contains career history)
+**Content:**
+- Career timeline: company name, period, role, one-line description
+- Key achievements per role (1-2 bullet points, quantified where possible)
+- Tech stack badges per role
+- Visual timeline layout (vertical, most recent first)
+
+**Connecting career to agent reports:**
+- If a career project overlaps with an agent-reference project report (e.g., same app name, same tech stack), link them visually
+- Career section shows "what they did professionally", agent reports show "how they actually work" — the combination is the portfolio's unique value
+- Don't duplicate project details — Career shows company context, Projects.astro shows agent-observed depth
 
 ### AgentReviews.astro
 **Data needed:** Multi-perspective references from persona-perspectives output, or individual user-profile reports

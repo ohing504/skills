@@ -1,6 +1,6 @@
 ---
 name: agent-reference
-description: Analyze past session history, git logs, GitHub profile (via gh CLI), and memory files to generate an objective reference check report about the user — like a colleague writing a professional reference, but from an AI agent's perspective. Produces user profile reports, per-project reports, multi-perspective references (CTO/PM/teammate personas), interview FAQ, and blog topic extraction. Includes GitHub contribution analysis (commit patterns, PR activity, language diversity, contribution calendar) with privacy controls for private repos. Use this skill whenever the user asks you to evaluate them as a developer or collaborator, wants a reference or recommendation letter based on your shared work, asks for work style analysis or self-reflection, requests "introduced by my agents" content, says things like "what do you think of me", "write a reference for me", "analyze my work patterns", "나에 대한 레퍼런스 써줘", "내 작업 스타일 분석해줘", or wants portfolio/resume content derived from actual agent collaboration data. Also triggers for interview prep based on collaboration history, or generating blog topics from past technical discussions. Do NOT use for general code review, architecture docs, cover letter writing, or codebase analysis unrelated to evaluating the user as a person.
+description: Generate objective reference check reports about the user from real AI collaboration data — session history, git logs, GitHub profile, and memory files. Like a colleague writing a professional reference, but grounded in actual shared work. Use whenever the user asks to evaluate them as a developer, wants a reference letter, work style analysis, "introduced by my agents" content, interview prep from collaboration history, or blog topics from past discussions. Triggers on "write a reference", "analyze my work patterns", "what do you think of me", "나에 대한 레퍼런스 써줘", "내 작업 스타일 분석해줘". Not for: general code review, architecture docs, cover letters, or codebase-only analysis.
 ---
 
 # Agent Reference — Introduced by My Agents
@@ -168,12 +168,12 @@ The dimensions are prompts for reflection, not a checklist. Focus on what you ge
 
 **User Profile Report:**
 - Read `references/user-profile-template.md` for the template
-- Save as `user-profile-[agent]-[date].md`
+- Save as `user-profile.md` inside a `{date}-{agent-name}/` directory
 - One per agent, covering the person across all projects
 
 **Project Report(s):**
 - Read `references/project-report-template.md` for the template
-- Save as `project-[project-name]-[agent]-[date].md`
+- Save as `project-{name}.md` inside the same directory
 - One per project you have meaningful context on
 
 Write in the language of the current session.

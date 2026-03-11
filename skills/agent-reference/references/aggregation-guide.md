@@ -6,9 +6,9 @@ How to combine individual agent reports into unified outputs. This phase synthes
 
 ## Input
 
-Collect all Phase 1 report files:
-- `user-profile-[agent]-[date].md` — one per agent
-- `project-[name]-[agent]-[date].md` — one per project per agent
+Collect all Phase 1 report files from the `reports/` directory:
+- `{date}-{agent-name}/user-profile.md` — one per agent
+- `{date}-{agent-name}/project-{name}.md` — one per project per agent
 
 ## Process
 

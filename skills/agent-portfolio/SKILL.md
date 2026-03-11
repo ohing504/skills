@@ -49,7 +49,7 @@ This step gathers all data needed to generate the portfolio. Guide the user thro
 
 After collecting inputs, help the user create the portfolio repo:
 
-**Option B: Private repo (Recommended)**
+**Option A: Private repo (Recommended)**
 ```bash
 gh repo create {username}/portfolio --private --clone
 cd portfolio
@@ -58,7 +58,7 @@ cd portfolio
 - GitHub Actions will build and deploy to Pages
 - User controls which reports appear on the Raw Data page
 
-**Option A: Public repo (Simple)**
+**Option B: Public repo (Simple)**
 ```bash
 gh repo create {username}/{username}.github.io --public --clone
 cd {username}.github.io
@@ -78,9 +78,10 @@ reports/
 │   └── ...
 └── aggregated/          (if Phase 2 was run)
     ├── aggregated-profile.md
+    ├── references-multi-perspective.md
+    ├── introduced-by-agents.md
     ├── faq.md
-    ├── blog-topics.md
-    └── introduced-by-agents.md
+    └── blog-topics.md
 ```
 
 If the user provides a resume, save it as `resume.md` in the repo root.
@@ -97,6 +98,7 @@ portfolio/
 │   │   └── project-*.md
 │   └── aggregated/             # Phase 2 outputs (if available)
 │       ├── aggregated-profile.md
+│       ├── references-multi-perspective.md
 │       ├── faq.md
 │       └── blog-topics.md
 ├── resume.md                   # Your resume/CV (optional)

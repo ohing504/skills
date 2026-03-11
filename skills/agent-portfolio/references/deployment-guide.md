@@ -2,7 +2,7 @@
 
 Complete guide for deploying the agent-portfolio site to GitHub Pages, including repo setup, GitHub Actions workflow, and update procedures.
 
-## Option B: Private Repo (Recommended)
+## Option A: Private Repo (Recommended)
 
 ### Why Recommended
 - Reports may contain private repo analysis — keep source private
@@ -120,7 +120,7 @@ gh api repos/{username}/portfolio/pages \
 - Wait for the first workflow run to complete
 - Site live at `https://{username}.github.io/portfolio`
 
-## Option A: Public Repo (Simple)
+## Option B: Public Repo (Simple)
 
 ### Step-by-Step
 
@@ -130,7 +130,7 @@ gh repo create {username}/{username}.github.io --public --clone
 cd {username}.github.io
 ```
 
-**2-4.** Same as Option B (Astro setup, config, Actions workflow)
+**2-4.** Same as Option A (Astro setup, config, Actions workflow)
 
 But `astro.config.mjs` does NOT need a `base` path:
 ```javascript

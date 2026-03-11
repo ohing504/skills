@@ -164,27 +164,9 @@ Enrich the Git Pattern Analysis section with:
 - How they describe their work in PR titles/descriptions
 - Issue-to-PR linkage (structured workflow vs. ad-hoc)
 
-### For Landing Page (Phase 3)
+### For Portfolio Site
 
-Extract visual-ready data:
-- Contribution heatmap data (the "잔디"/grass)
-- Language distribution chart data
-- Active project timeline
-- Stats: total commits, PRs, repos, languages
-
-```json
-{
-  "github_summary": {
-    "total_contributions_last_year": 1247,
-    "active_repos": 8,
-    "languages": ["TypeScript", "Python", "Dart"],
-    "longest_streak_days": 45,
-    "peak_day": "Wednesday",
-    "pr_merge_rate": 0.95,
-    "contribution_heatmap": []
-  }
-}
-```
+If the user plans to use `agent-portfolio` to generate a portfolio site, the GitHub data collected here will feed into the GitHubActivity component. See the `agent-portfolio` skill for details.
 
 ---
 

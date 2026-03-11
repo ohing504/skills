@@ -164,6 +164,34 @@ No skill installation is needed in the target project — read access is suffici
 - Let the user add projects from any path — analysis only needs read access, no skill installation required
 - For deeper analysis, request the local project path so you can read git logs and session data directly
 
+#### Assign Privacy Levels
+
+After the user selects projects, ask them to assign a privacy level to each. This applies to **all projects** — not just GitHub repos. The same 4-level system from `references/github-analysis-guide.md` applies:
+
+| Level | What appears in reports |
+|-------|------------------------|
+| **Full** | Project name, tech stack, specific observations, code patterns |
+| **Anonymized** | Generic description, tech stack, observations without identifying details |
+| **Stats only** | Contribution counts and patterns only |
+| **Excluded** | Not mentioned at all |
+
+**Defaults:**
+- Open source / public projects → Full
+- Private repos, employer projects → **Anonymized** (ask user to confirm)
+- Side projects the user owns → Full (unless user says otherwise)
+
+Present like this:
+```
+Privacy levels for selected projects:
+
+  financial        [Anonymized] — private repo
+  agentfiles       [Full] — public, open source
+  klming-flutter   [Anonymized] — private, published app
+  klming-fastapi   [Stats only] — private, employer work
+
+Change any? (e.g., "financial to Full", "klming-fastapi to Excluded")
+```
+
 ### Step 2: Assess Scope
 
 After collecting data, take stock:
@@ -238,6 +266,28 @@ Incorporate corrections before proceeding to report writing. If the user provide
 - One per project you have meaningful context on
 
 Write in the language of the current session.
+
+#### Content Sensitivity Guide
+
+Reports may be published on a public portfolio site. **Respect each project's privacy level** and avoid including content that could cause harm when public. Even for "Full" privacy projects, apply these filters:
+
+**Never include (any privacy level):**
+- PII: real names of colleagues, email addresses, phone numbers, internal Slack/Discord channels
+- Secrets: API keys, tokens, passwords, internal URLs, server addresses, database connection strings
+- Security implementation details: RLS function names, auth bypass patterns, SECURITY DEFINER details, error filtering rules — these expand the attack surface of production services
+
+**Avoid for Anonymized/Stats-only projects:**
+- Specific business metrics: exact user counts, MAU, revenue, cost figures (use qualitative descriptions like "production-scale service" instead of "3,000+ users, MAU 500+")
+- Internal domain model names and entity names that could identify the project
+- Infrastructure stack details: specific cloud services, container orchestration, CI/CD runner setup
+- Employer internal systems: auth architecture (e.g., "Keycloak SSO"), payment integrations, internal tool names
+- Exact migration dates and timelines
+
+**What TO include (focus on the person, not the project):**
+- Technical decision-making patterns and reasoning
+- Work style, communication style, problem-solving approach
+- General technology categories (e.g., "BaaS migration" not "Firebase→Supabase migration on 2025-07-19")
+- Quantified achievements using relative terms (e.g., "dramatically reduced server costs" not "90% cost reduction")
 
 ### Step 6: Offer the Reports
 

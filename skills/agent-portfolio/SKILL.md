@@ -37,6 +37,7 @@ This step gathers all data needed to generate the portfolio. Guide the user thro
 - This populates the "About" and "Career" sections
 - Any format (markdown, PDF text, plain text)
 - **PDF handling:** Read PDF files directly using your file reading tool (e.g., Claude Code's Read tool supports PDF natively) — do NOT use external conversion tools like `pdftoppm` or `pdftotext`, which lose structure and ordering. Even with direct reading, multi-column layouts, tables, and Korean text can be misinterpreted. Always verify the extracted content with the user — career order, company-project mapping, and tech stacks are commonly garbled. Markdown format is most reliable.
+- **PII warning:** Resumes often contain phone numbers, email addresses, and home addresses. These must NOT appear on the public site. Extract only career/education/skills content. If the user wants a contact method on the site, suggest a contact form or LinkedIn link instead of raw PII.
 
 **3. GitHub data (optional)**
 - Check `gh auth status` to see if gh CLI is available
@@ -203,6 +204,17 @@ Go through each section with the user:
 - [ ] **Projects** — Are the right projects highlighted? Any to add/remove?
 - [ ] **Work Style** — Does the visualization feel accurate?
 - [ ] **Overall feel** — Does the concept match their identity?
+
+### Pre-deployment Privacy Check
+
+**Before deploying, review the site content for sensitive information.** The reports were written for the user's reference — not all content is safe to publish. Walk through this checklist with the user:
+
+- [ ] **PII** — No phone numbers, email addresses, or home addresses on the site (check resume-derived content especially)
+- [ ] **Private repo details** — Reports for private/employer projects should match their assigned privacy level (Full/Anonymized/Stats-only). Check that anonymized projects don't leak identifying details (specific domain names, internal URLs, unique tech combinations)
+- [ ] **Business metrics** — No exact user counts, MAU, revenue, or cost figures from private projects (use qualitative descriptions)
+- [ ] **Security details** — No RLS function names, auth implementation patterns, SECURITY DEFINER details, or error filtering rules from production services
+- [ ] **Employer internal systems** — No internal tool names, infrastructure architecture, or vendor integrations that could violate NDA or expose attack surface
+- [ ] **Materials** — Resume PDF is NOT served as a static file (extract content only, don't copy the file to `public/`)
 
 ### Adjust
 

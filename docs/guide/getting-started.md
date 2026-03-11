@@ -37,11 +37,19 @@ After the user chooses, confirm the repo names with them before creating.
 
 ## Step 2: Install Skills
 
+Ask the user which agent they are using, then install with the `--agent` flag to avoid installing for all 40+ agents:
+
 ```bash
-npx skills add ohing504/skills --skill agent-reference agent-portfolio
+# For Claude Code
+npx skills add ohing504/skills --skill agent-reference agent-portfolio --agent claude-code
+
+# For Cursor
+npx skills add ohing504/skills --skill agent-reference agent-portfolio --agent cursor
 ```
 
-This installs both skills in the portfolio repo.
+Common agent names: `claude-code`, `cursor`, `windsurf`, `cline`, `codex`, `copilot`, `amp`
+
+This installs both skills in the portfolio repo for the specified agent only.
 
 ## Step 3: Collect User Materials
 

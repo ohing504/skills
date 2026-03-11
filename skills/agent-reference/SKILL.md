@@ -187,6 +187,18 @@ Present the reports to the user. They may want to:
 
 When the user provides feedback and corrections, update the report and append a **Review History** section at the bottom. This table records what the user pointed out and what was changed. It serves as evidence that the report was human-reviewed, and provides context for corrections (e.g., "data was limited to current laptop — earlier work on a different machine was not reflected"). See the templates for the format. If the user doesn't request changes, omit this section.
 
+**Suggested output directory**: Save reports to a `reports/` directory structure for easy use with `agent-portfolio`:
+
+```
+reports/
+└── {date}-{agent-name}/
+    ├── user-profile.md
+    ├── project-{name}.md
+    └── ...
+```
+
+This makes it straightforward to copy reports into a portfolio repo later.
+
 ---
 
 ## Phase 2: Aggregation

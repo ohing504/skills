@@ -14,6 +14,9 @@ All skill content is written in **English** (for global ecosystem compatibility)
 # Install a skill from this repo
 npx skills add ohing504/skills --skill agent-reference
 
+# Install agent-portfolio skill
+npx skills add ohing504/skills --skill agent-portfolio
+
 # Install all skills
 npx skills add ohing504/skills --all
 
@@ -25,15 +28,21 @@ npx skills add ohing504/skills --all
 
 ```
 skills/
-└── agent-reference/                     # "Introduced by My Agents"
-    ├── SKILL.md                         # Main entry point (Phase 1: analyze, Phase 2: aggregate)
+├── agent-reference/                     # "Introduced by My Agents"
+│   ├── SKILL.md                         # Main entry point (Phase 1: analyze, Phase 2: aggregate)
+│   └── references/
+│       ├── analysis-dimensions.md       # 5 analysis dimensions guide
+│       ├── user-profile-template.md     # Per-person report template
+│       ├── project-report-template.md   # Per-project report template
+│       ├── aggregation-guide.md         # Phase 2 cross-report synthesis
+│       ├── persona-perspectives.md      # Multi-perspective refs, FAQ, blog, resume
+│       └── github-analysis-guide.md     # gh CLI-based GitHub profile & repo analysis
+└── agent-portfolio/                     # Portfolio site generator
+    ├── SKILL.md                         # Main entry point (5-step workflow)
     └── references/
-        ├── analysis-dimensions.md       # 5 analysis dimensions guide
-        ├── user-profile-template.md     # Per-person report template
-        ├── project-report-template.md   # Per-project report template
-        ├── aggregation-guide.md         # Phase 2 cross-report synthesis
-        ├── persona-perspectives.md      # Multi-perspective refs, FAQ, blog, resume
-        └── github-analysis-guide.md     # gh CLI-based GitHub profile & repo analysis
+        ├── concept-generation-guide.md  # Design concept analysis & mapping
+        ├── site-structure-guide.md      # Astro project & component specs
+        └── deployment-guide.md          # GitHub Pages deployment workflow
 ```
 
 ## agent-reference
@@ -43,6 +52,14 @@ AI agents write objective reference check reports about a user based on real col
 - **Phase 2 (aggregate)**: Combine reports from multiple agents → unified profile, FAQ, blog topics
 
 See `DESIGN.md` for the original concept, Phase 3 portfolio site plan, and design decisions log.
+
+## agent-portfolio
+
+Generate a personalized portfolio site from agent-reference reports. AI analyzes reports to propose a design concept, scaffolds an Astro site with concept-based theming, and deploys to GitHub Pages.
+- **Input**: agent-reference reports + resume (optional) + GitHub data (optional)
+- **Output**: Astro site deployed to `{username}.github.io`
+
+See `docs/plans/2026-03-11-agent-portfolio-design.md` for the full design document.
 
 ## Installed Tools
 

@@ -7,6 +7,7 @@ A collection of [Agent Skills](https://agentskills.io) for Claude and other AI a
 | Skill | Description |
 |-------|-------------|
 | [agent-reference](./skills/agent-reference/) | "Introduced by My Agents" — AI agents write objective reference check reports about a user based on real collaboration experience |
+| [agent-portfolio](./skills/agent-portfolio/) | Generate a personalized portfolio site from agent-reference reports, deployed to GitHub Pages |
 
 ## Installation
 

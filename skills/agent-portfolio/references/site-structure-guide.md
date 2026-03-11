@@ -99,10 +99,11 @@ interface Props {
 
 **Important: Keep the landing page focused on "Introduced by My Agents".** Career details are supplementary — show a compact preview on the landing page, with a link to the full career page.
 
-**Landing page content (compact):**
-- Most recent 2-3 roles only (company, period, role — one line each)
-- Total experience summary (e.g., "9년 경력 · 5개 회사 · 2회 팀장")
-- "View full career →" link to `/career` page
+**Landing page content (compact — MUST be short):**
+- **Show only the 2 most recent roles** (company, period, role — one line each). Do NOT list all career entries — that belongs on the `/career` page only.
+- Total experience summary (e.g., "9년+ 경력 · 5개 회사")
+- "전체 타임라인 →" link to `/career` page
+- The entire Career section on the landing page should be **no taller than ~150px** — if it takes more vertical space than the About section, it's too long.
 
 ### /career page (separate page)
 **Full career timeline page** at `src/pages/career.astro`:

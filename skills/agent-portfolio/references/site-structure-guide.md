@@ -180,12 +180,10 @@ interface Props {
 ### Footer.astro
 **Required:** Yes
 **Content:**
-```
-Introduced by My Agents · Built with @ohing504/skills
-Last updated: {build date}
-```
-- Link to agent-reference skill repo (https://github.com/ohing504/skills)
-- Build date auto-generated at build time via `new Date().toISOString().split('T')[0]`
+- Contact & social links row: GitHub profile, email, LinkedIn, etc. (use icons, not full URLs)
+- Credit line: `Introduced by My Agents · Built with @ohing504/skills`
+- Build date: auto-generated via `new Date().toISOString().split('T')[0]`
+- Link "Built with @ohing504/skills" to https://github.com/ohing504/skills
 
 ## Data Processing (parse-reports.ts)
 

@@ -153,7 +153,7 @@ interface Props {
 **Required:** No
 **Content:**
 - Total contributions (last year)
-- Language distribution (horizontal bar chart, CSS-only)
+- Language distribution (horizontal bar chart, CSS-only) — show repo count with label (e.g., "19 repos"), not bare numbers
 - Active repos count
 - Longest streak
 - Peak activity day

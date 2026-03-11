@@ -13,6 +13,13 @@ npm install tailwindcss @tailwindcss/vite
 
 > **Warning:** Do NOT use `npx astro add tailwind` — it installs `@astrojs/tailwind` (Tailwind 3 integration) which conflicts with Tailwind 4. Install `@tailwindcss/vite` directly instead.
 
+After scaffolding, verify `.gitignore` exists (Astro creates one) and ensure it includes at minimum:
+```
+node_modules/
+dist/
+.astro/
+```
+
 ### Directory Structure
 
 ```
@@ -48,7 +55,8 @@ npm install tailwindcss @tailwindcss/vite
 ├── astro.config.mjs
 ├── tailwind.config.mjs          # Optional: Tailwind 4 also supports CSS @theme
 ├── tsconfig.json
-└── package.json
+├── package.json
+└── .gitignore                   # node_modules, dist, .astro, etc.
 ```
 
 ## Component Specifications

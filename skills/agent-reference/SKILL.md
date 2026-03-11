@@ -35,6 +35,8 @@ You have access to rich local data about the user's work. Gather evidence from t
 
 #### Data Sources (in order of efficiency)
 
+> **Non-Claude-Code agents**: The paths below are Claude Code-specific. If running in Cursor, Windsurf, Cline, Aider, or other agents, read `references/multi-agent-data-sources.md` for equivalent paths and formats. Git history and memory/rules files are available across all agents.
+
 **1. Auto Memory files** (start here — already-distilled insights):
 ```
 ~/.claude/projects/{project-path}/memory/MEMORY.md

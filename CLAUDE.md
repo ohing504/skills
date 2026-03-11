@@ -36,7 +36,8 @@ skills/
 │       ├── project-report-template.md   # Per-project report template
 │       ├── aggregation-guide.md         # Phase 2 cross-report synthesis
 │       ├── persona-perspectives.md      # Multi-perspective refs, FAQ, blog, resume
-│       └── github-analysis-guide.md     # gh CLI-based GitHub profile & repo analysis
+│       ├── github-analysis-guide.md     # gh CLI-based GitHub profile & repo analysis
+│       └── multi-agent-data-sources.md  # Data paths for Cursor, Windsurf, Cline, Aider, etc.
 └── agent-portfolio/                     # Portfolio site generator
     ├── SKILL.md                         # Main entry point (5-step workflow)
     └── references/

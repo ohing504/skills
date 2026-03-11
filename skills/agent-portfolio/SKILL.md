@@ -164,8 +164,7 @@ Based on the approved concept and available data, generate these components:
 | Component | Data source | Required |
 |-----------|------------|----------|
 | Hero.astro | aggregated profile or first user-profile report | Yes |
-| About.astro | materials/resume (any format) | Only if resume provided |
-| Career.astro | materials/resume (career/experience section) | Only if resume has career data. Compact preview on landing, full timeline on `/career` page |
+| About.astro | materials/resume (any format) | Only if resume provided. Two-column: main content (left) + Career preview & Education sidebar (right) |
 | AgentReviews.astro | user-profile reports (persona sections) | Yes |
 | Projects.astro | project-*.md reports | Yes |
 | WorkStyle.astro | analysis dimensions from profiles | Yes |

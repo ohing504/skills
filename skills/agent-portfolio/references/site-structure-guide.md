@@ -86,24 +86,16 @@ interface Props {
 ### About.astro
 **Data needed:** Resume file from `materials/` (any format — PDF, Markdown, text)
 **Required:** No (only if resume provided)
+**Layout:** Two-column — main content (left) + sidebar (right)
 **Content:**
-- Self-introduction / summary from resume header (who they are, what they value)
-- Education and certifications (if available in resume)
-- Skills/tech stack overview
-- Can include profile image if provided in `materials/`
-- Note: Career timeline goes in Career.astro, not here
-
-### Career.astro (landing page preview)
-**Data needed:** Resume file from `materials/` — specifically career/experience sections
-**Required:** No (only if resume contains career history)
-
-**Important: Keep the landing page focused on "Introduced by My Agents".** Career details are supplementary — show a compact preview on the landing page, with a link to the full career page.
-
-**Landing page content (compact — MUST be short):**
-- **Show only the 2 most recent roles** (company, period, role — one line each). Do NOT list all career entries — that belongs on the `/career` page only.
-- Total experience summary (e.g., "9년+ 경력 · 5개 회사")
-- "전체 타임라인 →" link to `/career` page
-- The entire Career section on the landing page should be **no taller than ~150px** — if it takes more vertical space than the About section, it's too long.
+- **Main (left):**
+  - Self-introduction / summary from resume header (who they are, what they value)
+  - Skills/tech stack badges
+  - Can include profile image if provided in `materials/`
+- **Sidebar (right) — Career + Education card(s):**
+  - Career preview: **2 most recent roles only** (company, role, period — one line each), "+N개 더보기" count, "전체보기 →" link to `/career` page. Do NOT list all career entries.
+  - Education: school name, degree, period — compact list in the same sidebar area
+  - Career and Education can be one combined card or two stacked cards, but must stay in the sidebar — do NOT give Career its own full-width section on the landing page.
 
 ### /career page (separate page)
 **Full career timeline page** at `src/pages/career.astro`:

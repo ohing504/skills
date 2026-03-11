@@ -61,9 +61,9 @@ What did this project specifically reveal about the user that might not be visib
 
 ---
 
-## Git Pattern Analysis
+## Git & GitHub Analysis
 
-If you have access to git history, analyze:
+If you have access to git history and/or GitHub data (via `gh` CLI), analyze:
 
 - **Commit style**: Message conventions, granularity, how well commits tell the project story
 - **Commit frequency**: Patterns in when and how often they commit
@@ -71,7 +71,14 @@ If you have access to git history, analyze:
 - **Dependency choices**: What they reached for vs. built themselves
 - **Review patterns**: How they handle their own code review (self-review before commit, squash vs. granular commits)
 
-If you don't have git access, skip this section.
+If GitHub data is available for this repo, also include:
+- **PR patterns**: Average size, time to merge, description quality
+- **Issue management**: How they track and describe work
+- **CI/CD engagement**: How they interact with automated checks
+
+See `github-analysis-guide.md` for `gh` CLI commands. For private repos, respect the user's chosen privacy level (full/anonymized/stats-only/excluded).
+
+If you don't have git or GitHub access, skip this section.
 
 ---
 

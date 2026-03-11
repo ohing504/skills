@@ -1,6 +1,6 @@
 ---
 name: agent-reference
-description: Analyze past session history, git logs, and memory files to generate an objective reference check report about the user — like a colleague writing a professional reference, but from an AI agent's perspective. Produces user profile reports, per-project reports, multi-perspective references (CTO/PM/teammate personas), interview FAQ, and blog topic extraction. Use this skill whenever the user asks you to evaluate them as a developer or collaborator, wants a reference or recommendation letter based on your shared work, asks for work style analysis or self-reflection, requests "introduced by my agents" content, says things like "what do you think of me", "write a reference for me", "analyze my work patterns", "나에 대한 레퍼런스 써줘", "내 작업 스타일 분석해줘", or wants portfolio/resume content derived from actual agent collaboration data. Also triggers for interview prep based on collaboration history, or generating blog topics from past technical discussions. Do NOT use for general code review, architecture docs, cover letter writing, or codebase analysis unrelated to evaluating the user as a person.
+description: Analyze past session history, git logs, GitHub profile (via gh CLI), and memory files to generate an objective reference check report about the user — like a colleague writing a professional reference, but from an AI agent's perspective. Produces user profile reports, per-project reports, multi-perspective references (CTO/PM/teammate personas), interview FAQ, and blog topic extraction. Includes GitHub contribution analysis (commit patterns, PR activity, language diversity, contribution calendar) with privacy controls for private repos. Use this skill whenever the user asks you to evaluate them as a developer or collaborator, wants a reference or recommendation letter based on your shared work, asks for work style analysis or self-reflection, requests "introduced by my agents" content, says things like "what do you think of me", "write a reference for me", "analyze my work patterns", "나에 대한 레퍼런스 써줘", "내 작업 스타일 분석해줘", or wants portfolio/resume content derived from actual agent collaboration data. Also triggers for interview prep based on collaboration history, or generating blog topics from past technical discussions. Do NOT use for general code review, architecture docs, cover letter writing, or codebase analysis unrelated to evaluating the user as a person.
 ---
 
 # Agent Reference — Introduced by My Agents
@@ -72,12 +72,68 @@ Per-session tool usage counts and timestamps. Reveals: which tools the user reli
 - `.omc/notepad.md` — working notes
 - Project `CLAUDE.md` files — user's instructions to agents
 
-#### Listing Available Projects
+**6. GitHub profile & repository data** (public activity + opt-in private):
+```bash
+gh auth status                           # check if gh CLI is available
+gh repo list --limit 50 --json name,isPrivate,pushedAt,primaryLanguage
+```
+If `gh` CLI is authenticated, read `references/github-analysis-guide.md` for the full workflow. This includes: contribution calendar (커밋 잔디), per-repo activity, PR patterns, language distribution, and privacy handling for private repos.
 
+**Important**: Always present the repo list to the user and let them choose which repos to include. Private repos default to anonymized — never expose private repo details without explicit consent.
+
+#### Discovering Projects
+
+Data about the user may be spread across multiple sources. Combine them to build a complete picture.
+
+**1. Session-tracked projects** (have conversation history):
 ```bash
 ls ~/.claude/projects/
 ```
 Directory names encode project paths (e.g., `-Users-ohing-workspace-financial` → `/Users/ohing/workspace/financial`). Count `.jsonl` files in each to see session volume.
+
+**2. Local workspace projects** (may lack session data):
+Ask the user where they keep their projects — e.g., `~/workspace`, `~/projects`, `~/code`. Then scan for git repos:
+```bash
+find ~/workspace -maxdepth 2 -name ".git" -type d 2>/dev/null | sed 's/\/.git$//'
+```
+This catches projects the user worked on before switching machines, before using AI agents, or with other tools that don't leave session logs. These projects can still be analyzed via git history.
+
+**3. GitHub repos** (remote activity):
+If `gh` CLI is available, list repos with `gh repo list` (see `references/github-analysis-guide.md`).
+
+#### Present a Selection Interface
+
+After discovering projects from all sources, present a unified list to the user and let them choose:
+
+```
+Found projects from 3 sources:
+
+Session data (12 projects):
+  [x] financial (72 sessions, 140 commits)
+  [x] agentfiles (76 sessions, 205 commits)
+  [ ] playground (2 sessions) — exclude by default (low activity)
+  ...
+
+Local workspace (3 additional, no session data):
+  [ ] klming-flutter — git history only (347 commits)
+  [ ] old-portfolio — git history only (23 commits)
+  ...
+
+GitHub (5 additional, not cloned locally):
+  [ ] oss-contribution-repo (public, 12 PRs)
+  ...
+
+Which projects should I include? You can also:
+- Exclude any you'd rather not analyze
+- Mark private repos as anonymized (name/details hidden in reports)
+- Add projects from other locations
+```
+
+**Key principles:**
+- Default to including session-tracked projects with meaningful activity
+- Default to excluding projects with very low activity (<3 sessions, <5 commits)
+- Always ask before including non-session-tracked projects — the user may not want everything analyzed
+- Let the user add projects from any path, not just the default workspace
 
 ### Step 2: Assess Scope
 

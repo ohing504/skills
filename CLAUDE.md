@@ -32,7 +32,8 @@ skills/
         ├── user-profile-template.md     # Per-person report template
         ├── project-report-template.md   # Per-project report template
         ├── aggregation-guide.md         # Phase 2 cross-report synthesis
-        └── persona-perspectives.md      # Multi-perspective refs, FAQ, blog, resume
+        ├── persona-perspectives.md      # Multi-perspective refs, FAQ, blog, resume
+        └── github-analysis-guide.md     # gh CLI-based GitHub profile & repo analysis
 ```
 
 ## agent-reference

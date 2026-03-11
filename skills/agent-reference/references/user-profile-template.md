@@ -60,6 +60,17 @@ Principles that emerge implicitly from their choices — not what they say they 
 
 ---
 
+## GitHub Activity Patterns
+
+> Include this section if GitHub data was collected via `gh` CLI. See `github-analysis-guide.md`. If GitHub data is unavailable, skip this section.
+
+- **Contribution rhythm**: Daily patterns, streaks, consistency (from contribution calendar)
+- **Project breadth**: Active repos, language diversity, domain range
+- **Collaboration signals**: PR review patterns, issue management, open source engagement
+- **Work cadence**: Peak days/times, burst vs. steady patterns
+
+---
+
 ## Strengths
 
 List with specific evidence. Each strength should be grounded in something you actually observed, not a general impression.

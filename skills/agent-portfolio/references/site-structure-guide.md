@@ -37,7 +37,9 @@ npx astro add tailwind
 │   └── styles/
 │       └── global.css                 # Tailwind base + concept tokens
 ├── reports/                           # Raw report files (from agent-reference)
-├── resume.md                          # Optional resume
+├── materials/                          # User-provided materials
+│   ├── resume.pdf                     # Resume/CV (any format)
+│   └── profile.jpg                    # Profile photo
 ├── public/
 │   └── favicon.svg
 ├── astro.config.mjs
@@ -67,11 +69,11 @@ npx astro add tailwind
 - 1-2 agent quotes as testimonials
 
 ### About.astro
-**Data needed:** `resume.md` content
+**Data needed:** Resume file from `materials/` (any format — PDF, Markdown, text)
 **Required:** No (only if resume provided)
 **Content:**
 - Parsed resume/self-introduction
-- Can include profile image if provided in `public/`
+- Can include profile image if provided in `materials/`
 
 ### AgentReviews.astro
 **Data needed:** Multi-perspective references from persona-perspectives output, or individual user-profile reports

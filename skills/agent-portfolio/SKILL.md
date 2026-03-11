@@ -49,23 +49,25 @@ This step gathers all data needed to generate the portfolio. Guide the user thro
 
 After collecting inputs, help the user create the portfolio repo:
 
-**Option A: Private repo (Recommended)**
+**1. Private source + public deploy (Recommended)**
 ```bash
 gh repo create {username}/portfolio --private --clone
 cd portfolio
+gh repo create {username}/{username}.github.io --public
 ```
-- Reports stay private, only built site is public
-- GitHub Actions will build and deploy to Pages
+- Two repos: `portfolio` (private) for source/reports, `{username}.github.io` (public) for deployed site
+- Reports stay private, clean URL: `https://{username}.github.io`
+- GitHub Actions builds in `portfolio` and pushes to `{username}.github.io`
 - User controls which reports appear on the Raw Data page
 
-**Option B: Public repo (Simple)**
+**2. Single public repo (Simple)**
 ```bash
 gh repo create {username}/{username}.github.io --public --clone
 cd {username}.github.io
 ```
-- Simplest setup — repo IS the site
+- One repo for everything — simplest setup
 - All reports visible in git history
-- Fine if user has no private repo content
+- Fine if user has no private content
 
 ### Organize Reports
 
@@ -84,7 +86,7 @@ reports/
     └── blog-topics.md
 ```
 
-If the user provides a resume, save it as `resume.md` in the repo root.
+If the user provides a resume, profile photo, or screenshots, save them to `materials/`. Any filename and format works (`resume.pdf`, `이력서.pdf`, `cv.md`, etc.).
 
 ### Portfolio Repo Structure
 
@@ -101,9 +103,9 @@ portfolio/
 │       ├── references-multi-perspective.md
 │       ├── faq.md
 │       └── blog-topics.md
-├── resume.md                   # Your resume/CV (optional)
-├── assets/                     # Profile photo, project screenshots (optional)
-│   └── profile.jpg
+├── materials/                  # User-provided materials (optional)
+│   ├── resume.pdf              # Resume/CV (any format and filename)
+│   └── profile.jpg             # Profile photo, screenshots
 └── README.md                   # Will be auto-generated
 ```
 
@@ -158,7 +160,7 @@ Based on the approved concept and available data, generate these components:
 | Component | Data source | Required |
 |-----------|------------|----------|
 | Hero.astro | aggregated profile or first user-profile report | Yes |
-| About.astro | resume.md | Only if resume provided |
+| About.astro | materials/resume (any format) | Only if resume provided |
 | AgentReviews.astro | user-profile reports (persona sections) | Yes |
 | Projects.astro | project-*.md reports | Yes |
 | WorkStyle.astro | analysis dimensions from profiles | Yes |
@@ -212,9 +214,13 @@ Iterate until the user approves the site.
 
 ## Step 5: Deploy
 
-Read `references/deployment-guide.md` for the complete deployment workflow.
+Read the deployment guide matching the user's chosen option:
+- Option 1 (private source + public deploy): `references/deployment-private.md`
+- Option 2 (single public repo): `references/deployment-public.md`
 
 ### Quick Deploy
+
+For Option 1 (private source + public deploy), set up the deploy key first (see `references/deployment-private.md`), then:
 
 ```bash
 git add -A
@@ -222,19 +228,17 @@ git commit -m "Initial portfolio site — Introduced by My Agents"
 git push -u origin main
 ```
 
-GitHub Actions will automatically build and deploy. The site will be live at:
-- **Private repo**: `https://{username}.github.io/portfolio`
-- **Public repo**: `https://{username}.github.io`
+GitHub Actions builds in `portfolio` and pushes to `{username}.github.io`. The site will be live at `https://{username}.github.io`.
 
 ### Verify
 
-- Check the Actions tab in GitHub for build status
-- Visit the site URL once deployment completes
+- Check the Actions tab in the source repo for build status
+- Visit `https://{username}.github.io` once deployment completes
 - Test on mobile (responsive check)
 
 ### GitHub Profile README (Optional)
 
-If the user wants, generate a minimal GitHub Profile README that links to the portfolio. See deployment-guide.md for the template.
+If the user wants, generate a minimal GitHub Profile README that links to the portfolio. See the deployment guides for the template.
 
 ---
 

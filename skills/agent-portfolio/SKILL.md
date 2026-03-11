@@ -150,8 +150,8 @@ Read `references/site-structure-guide.md` for complete component specifications.
 
 ```bash
 npm create astro@latest -- --template minimal --no-install
-npx astro add tailwind --yes
 npm install
+npx astro add tailwind
 ```
 
 ### Generate Components
@@ -173,7 +173,7 @@ Based on the approved concept and available data, generate these components:
 
 ### Apply Concept Theme
 
-Configure `tailwind.config.mjs` with concept-specific design tokens (colors, fonts) from the approved concept. Import Google Fonts in `Layout.astro`.
+Configure concept-specific design tokens. Tailwind 4 supports both CSS-based configuration (using `@theme` in your CSS) and the traditional `tailwind.config.mjs`. Either approach works — see `site-structure-guide.md` for details. Import Google Fonts in `Layout.astro`.
 
 ### Process Report Data
 

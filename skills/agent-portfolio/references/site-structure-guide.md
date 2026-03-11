@@ -6,7 +6,8 @@ This guide defines the Astro project structure, component specifications, and da
 
 When scaffolding, use:
 ```bash
-npm create astro@latest -- --template minimal
+npm create astro@latest -- --template minimal --no-install
+npm install
 npx astro add tailwind
 ```
 
@@ -43,7 +44,7 @@ npx astro add tailwind
 ├── public/
 │   └── favicon.svg
 ├── astro.config.mjs
-├── tailwind.config.mjs
+├── tailwind.config.mjs          # Optional: Tailwind 4 also supports CSS @theme
 ├── tsconfig.json
 └── package.json
 ```
@@ -189,11 +190,34 @@ function extractPersonas(reports: ParsedReport[]): AgentPersona[]
 
 ## Tailwind Concept Tokens
 
-Define concept-specific design tokens in `tailwind.config.mjs`:
+Tailwind 4 supports two ways to define concept-specific design tokens:
+
+### Option A: CSS `@theme` (Tailwind 4 native)
+
+Define tokens directly in `src/styles/global.css`:
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1e3a5f;
+  --color-secondary: #64748b;
+  --color-accent: #3b82f6;
+  --color-surface: #f8fafc;
+  --color-text: #0f172a;
+  --font-heading: 'JetBrains Mono', monospace;
+  --font-body: 'Source Serif 4', serif;
+}
+```
+
+Use in components: `class="text-primary font-heading bg-surface"`
+
+### Option B: `tailwind.config.mjs` (compatible with Tailwind 4)
 
 ```javascript
 // Example for Blueprint concept
 export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
@@ -212,7 +236,7 @@ export default {
 }
 ```
 
-The agent fills these values based on the chosen concept from `concept-generation-guide.md`.
+Either approach works. Option A is preferred for Tailwind 4 as it keeps everything in CSS and doesn't require a separate config file.
 
 ## Responsive Design
 

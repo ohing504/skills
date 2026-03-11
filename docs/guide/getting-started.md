@@ -87,6 +87,8 @@ The skill will:
    - `user-profile.md` — who they are as a collaborator
    - `project-{name}.md` — per-project analysis
 
+> **Note:** The skill analyzes projects by reading their data remotely — it does not need to be installed in each project. If you want to include projects outside the portfolio repo, just provide their local paths (e.g., `~/workspace/my-app`) and the skill will read git history and session logs from there.
+
 ### Multiple Agents
 
 For richer perspectives, the user can run Phase 1 in different agents:
@@ -96,14 +98,10 @@ For richer perspectives, the user can run Phase 1 in different agents:
 
 ### Deeper Analysis from Working Projects
 
-For better session data access, the user can also install `agent-reference` directly in their working projects:
+The skill only needs read access to analyze projects — no installation required in each project. To include more projects:
 
-```bash
-# In each project to analyze
-npx skills add ohing504/skills --skill agent-reference
-```
-
-Then copy the generated reports back to the portfolio repo's `reports/` directory.
+- **Provide project paths** — tell the agent where your projects live (e.g., `~/workspace/my-app`). It reads git history, session logs, and memory files from those paths directly.
+- **Use `gh` CLI** — if authenticated, the agent can explore your GitHub repos, contribution history, and PR patterns without local clones.
 
 ## Step 5: Build the Portfolio Site
 

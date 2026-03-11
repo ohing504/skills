@@ -101,41 +101,68 @@ find ~/workspace -maxdepth 2 -name ".git" -type d 2>/dev/null | sed 's/\/.git$//
 This catches projects the user worked on before switching machines, before using AI agents, or with other tools that don't leave session logs. These projects can still be analyzed via git history.
 
 **3. GitHub repos** (remote activity):
-If `gh` CLI is available, list repos with `gh repo list` (see `references/github-analysis-guide.md`).
+If `gh` CLI is available, actively pull the user's repo list and contribution data. See Data Source #6 above and `references/github-analysis-guide.md` for the full workflow. Use the repo list to identify projects not available locally.
 
 #### Present a Selection Interface
 
-After discovering projects from all sources, present a unified list to the user and let them choose:
+After discovering projects from all sources, present a unified list to the user. **Scale the display based on project count:**
 
+**Few projects (≤10 total):** Show all with details
 ```
-Found projects from 3 sources:
+Found 8 projects:
 
-Session data (12 projects):
+Session data:
   [x] financial (72 sessions, 140 commits)
   [x] agentfiles (76 sessions, 205 commits)
   [ ] playground (2 sessions) — exclude by default (low activity)
-  ...
 
-Local workspace (3 additional, no session data):
+Local workspace:
   [ ] klming-flutter — git history only (347 commits)
-  [ ] old-portfolio — git history only (23 commits)
-  ...
 
-GitHub (5 additional, not cloned locally):
-  [ ] oss-contribution-repo (public, 12 PRs)
-  ...
-
-Which projects should I include? You can also:
-- Exclude any you'd rather not analyze
-- Mark private repos as anonymized (name/details hidden in reports)
-- Add projects from other locations
+GitHub:
+  [x] oss-contrib-repo (public, 12 PRs)
+  [ ] old-experiment (public, 3 commits) — exclude by default
 ```
+
+**Many projects (>10 total):** Group by category, show top projects, summarize the rest
+```
+Found 34 projects across 3 sources:
+
+Recommended for analysis (high activity):
+  [x] financial (72 sessions, 140 commits)
+  [x] agentfiles (76 sessions, 205 commits)
+  [x] my-saas-app (45 sessions, 312 commits)
+  ... and 4 more with significant activity
+
+Skipping by default (low activity): 23 projects
+  (say "show all" to see the full list)
+
+Which ones should I include or exclude?
+```
+
+**After selection, offer deeper analysis:**
+```
+Want me to analyze any of these projects more deeply?
+If you provide the local path (e.g., ~/workspace/my-app),
+I can read git history, session logs, and code structure
+for richer project reports.
+```
+
+**Analyzing external project paths:**
+When the user provides a project path, you can read its data directly:
+```bash
+git -C ~/workspace/my-app log --oneline -50          # git history
+ls ~/.claude/projects/-Users-*-workspace-my-app/      # session logs
+cat ~/.claude/projects/-Users-*-workspace-my-app/memory/MEMORY.md  # memory
+```
+No skill installation is needed in the target project — read access is sufficient.
 
 **Key principles:**
 - Default to including session-tracked projects with meaningful activity
 - Default to excluding projects with very low activity (<3 sessions, <5 commits)
 - Always ask before including non-session-tracked projects — the user may not want everything analyzed
-- Let the user add projects from any path, not just the default workspace
+- Let the user add projects from any path — analysis only needs read access, no skill installation required
+- For deeper analysis, request the local project path so you can read git logs and session data directly
 
 ### Step 2: Assess Scope
 
@@ -166,7 +193,39 @@ The dimensions are prompts for reflection, not a checklist. Focus on what you ge
 
 **Acknowledge data boundaries.** Your analysis is limited to what's on the current machine. Previous laptops, other AI agents (Claude Desktop, Cursor, etc.), and pre-session-history work are invisible to you. State this explicitly when it affects confidence.
 
-### Step 4: Write Reports
+### Step 4: Validate Findings with the User
+
+Present findings in the language of the current session. Before writing reports, present your key findings and ask the user to verify. Session data can be incomplete or misleading — the user knows their own story best.
+
+**Present a summary of what you found:**
+```
+Here's what I observed from your sessions and git history.
+Please correct anything that's wrong or missing:
+
+Work style:
+  - You tend to explore the codebase thoroughly before making changes
+  - You prefer iterative small commits over large rewrites
+  - [anything wrong here?]
+
+Project roles:
+  - financial: led architecture decisions, primary contributor
+  - agentfiles: rapid prototyping, experimental approach
+  - [any project roles I got wrong?]
+
+Notable patterns:
+  - Frequently refactored code for readability after getting it working
+  - Strong preference for testing before committing
+  - [anything I missed or misread?]
+```
+
+**Why this matters:**
+- Session data only captures what happened on this machine — the user may have done significant work elsewhere
+- Agent-observed patterns may miss context (e.g., a "simple" project may have been intentionally minimal)
+- The user may want to emphasize or de-emphasize certain aspects of their work style
+
+Incorporate corrections before proceeding to report writing. If the user provides additional context (e.g., "that project was actually a rewrite of a legacy system"), use it to enrich the analysis.
+
+### Step 5: Write Reports
 
 **User Profile Report:**
 - Read `references/user-profile-template.md` for the template
@@ -180,16 +239,17 @@ The dimensions are prompts for reflection, not a checklist. Focus on what you ge
 
 Write in the language of the current session.
 
-### Step 5: Offer the Reports
+### Step 6: Offer the Reports
 
 Present the reports to the user. They may want to:
 - Review and provide feedback before finalizing
 - Run Phase 1 in other agents to gather more perspectives
 - Proceed directly to Phase 2 aggregation
+- Skip Phase 2 and proceed directly to `agent-portfolio` for site generation (Phase 2 is optional — a single agent's reports are sufficient for a portfolio)
 
 When the user provides feedback and corrections, update the report and append a **Review History** section at the bottom. This table records what the user pointed out and what was changed. It serves as evidence that the report was human-reviewed, and provides context for corrections (e.g., "data was limited to current laptop — earlier work on a different machine was not reflected"). See the templates for the format. If the user doesn't request changes, omit this section.
 
-**Suggested output directory**: Save reports to a `reports/` directory structure for easy use with `agent-portfolio`:
+**Suggested output directory**: Save reports to a `reports/` directory in the current working directory (typically the portfolio repo) for easy use with `agent-portfolio`:
 
 ```
 reports/

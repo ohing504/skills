@@ -28,9 +28,10 @@ gh repo list --limit 50 --json name,isPrivate,pushedAt,primaryLanguage,descripti
 ### Identify active repos
 
 ```bash
-# Repos pushed to in the last 6 months
+# Repos pushed to in the last 6 months (calculate date dynamically)
+SINCE=$(date -v-6m +%Y-%m-%d 2>/dev/null || date -d '6 months ago' +%Y-%m-%d)
 gh repo list --limit 50 --json name,isPrivate,pushedAt \
-  --jq '[.[] | select(.pushedAt > "2025-09-01")] | sort_by(.pushedAt) | reverse | .[] | "\(.name) (\(if .isPrivate then "private" else "public" end)) - last push: \(.pushedAt)"'
+  --jq "[.[] | select(.pushedAt > \"$SINCE\")] | sort_by(.pushedAt) | reverse | .[] | \"\(.name) (\(if .isPrivate then \"private\" else \"public\" end)) - last push: \(.pushedAt)\""
 ```
 
 ### Present choices to the user

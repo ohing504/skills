@@ -31,7 +31,6 @@ npm install tailwindcss @tailwindcss/vite
 │   │   ├── AgentReviews.astro         # Agent persona review cards
 │   │   ├── Projects.astro             # Project highlight cards
 │   │   ├── WorkStyle.astro            # Work style radar/visualization
-│   │   ├── GitHubActivity.astro       # GitHub stats and calendar
 │   │   ├── FAQ.astro                  # Interviewer FAQ accordion
 │   │   ├── BlogTopics.astro           # Blog topic seeds
 │   │   ├── RawData.astro              # Links to full reports
@@ -148,15 +147,12 @@ interface Props {
 - Philosophy & Values
 - Technical Capability
 
-### GitHubActivity.astro
-**Data needed:** GitHub API data collected in Step 1
+### GitHub link
 **Required:** No
 **Content:**
-- Total contributions (last year)
-- Language distribution (horizontal bar chart, CSS-only) — show repo count with label (e.g., "19 repos"), not bare numbers
-- Active repos count
-- Longest streak
-- Peak activity day
+- Not a dedicated component — just include a GitHub profile link (icon + username) in the Hero or Footer section
+- Detailed GitHub stats (contribution calendar, language distribution, etc.) are already visible on the user's GitHub profile — duplicating them here adds little value and doesn't fit the "Introduced by My Agents" concept
+- The agent-reference report's GitHub Activity Patterns section already captures the meaningful analysis
 
 ### FAQ.astro
 **Data needed:** `faq.md` from aggregated reports

@@ -168,7 +168,7 @@ Based on the approved concept and available data, generate these components:
 | AgentReviews.astro | user-profile reports (persona sections) | Yes |
 | Projects.astro | project-*.md reports | Yes |
 | WorkStyle.astro | analysis dimensions from profiles | Yes |
-| GitHubActivity.astro | gh CLI data from Step 1 | Only if GitHub data collected |
+| GitHub link | Hero or Footer | No — just a profile link, not a stats component. GitHub stats are already on the user's profile. |
 | FAQ.astro | faq.md from aggregated outputs | Only if available |
 | BlogTopics.astro | blog-topics.md from aggregated outputs | Only if available |
 | RawData.astro | report files user chose to make public | Optional |

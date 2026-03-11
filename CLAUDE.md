@@ -11,14 +11,8 @@ All skill content is written in **English** (for global ecosystem compatibility)
 ## Commands
 
 ```bash
-# Install a skill from this repo
-npx skills add ohing504/skills --skill agent-reference
-
-# Install agent-portfolio skill
-npx skills add ohing504/skills --skill agent-portfolio
-
-# Install all skills
-npx skills add ohing504/skills --all
+# Install skills from this repo
+npx skills add ohing504/skills --skill agent-reference agent-portfolio
 
 # Test with skill-creator (installed at .agents/skills/skill-creator/)
 # See skill-creator agents/ and references/ for eval workflows
@@ -43,7 +37,8 @@ skills/
     └── references/
         ├── concept-generation-guide.md  # Design concept analysis & mapping
         ├── site-structure-guide.md      # Astro project & component specs
-        └── deployment-guide.md          # GitHub Pages deployment workflow
+        ├── deployment-private.md        # Deploy: private source + public deploy
+        └── deployment-public.md         # Deploy: single public repo
 ```
 
 ## agent-reference

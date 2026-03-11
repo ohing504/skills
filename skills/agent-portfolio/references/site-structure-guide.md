@@ -132,7 +132,7 @@ interface Props {
 - Tech stack badges
 - Agent's observation of user's role
 - Key contribution highlight
-- Commit count / session count (if available)
+- Metadata with labels (e.g., "85 sessions", "140 commits") — always include a label, never display a bare number without context
 
 ### WorkStyle.astro
 **Data needed:** Analysis dimensions from user profile reports

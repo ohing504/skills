@@ -35,6 +35,8 @@ cd {username}.github.io
 
 After the user chooses, confirm the repo names with them before creating.
 
+> **Important:** The `{username}.github.io` repo name is a GitHub Pages convention and **must not be changed** — GitHub only serves the root URL (`https://{username}.github.io`) from a repo with this exact name. The private source repo name (e.g., `portfolio`) can be anything the user prefers.
+
 ## Step 2: Install Skills
 
 Ask the user which agent they are using, then install with the `--agent` flag to avoid installing for all 40+ agents:

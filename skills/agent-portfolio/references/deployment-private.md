@@ -22,12 +22,14 @@ Complete guide for deploying the agent-portfolio site using two repos: a private
 
 ## Step 1: Create Both Repos
 
+> **Important:** The `{username}.github.io` repo name is a GitHub Pages convention and **must not be changed**. The private source repo name (e.g., `portfolio`) can be anything the user prefers.
+
 ```bash
-# Create private source repo
+# Create private source repo (name is flexible)
 gh repo create {username}/portfolio --private --clone
 cd portfolio
 
-# Create public deploy target (empty — will receive built files)
+# Create public deploy target (name MUST be {username}.github.io)
 gh repo create {username}/{username}.github.io --public
 ```
 

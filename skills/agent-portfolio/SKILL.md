@@ -55,6 +55,7 @@ gh repo create {username}/portfolio --private --clone
 cd portfolio
 gh repo create {username}/{username}.github.io --public
 ```
+- The `{username}.github.io` name is a GitHub Pages convention and **must not be changed**. The private source repo name (e.g., `portfolio`) can be anything.
 - Two repos: `portfolio` (private) for source/reports, `{username}.github.io` (public) for deployed site
 - Reports stay private, clean URL: `https://{username}.github.io`
 - GitHub Actions builds in `portfolio` and pushes to `{username}.github.io`

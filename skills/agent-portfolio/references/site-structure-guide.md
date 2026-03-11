@@ -57,9 +57,20 @@ npm install tailwindcss @tailwindcss/vite
 ### Layout.astro
 - HTML head: charset, viewport, title, description meta, Open Graph tags
 - Google Fonts link (based on concept)
-- Global CSS import
+- **Global CSS import** — `import '../styles/global.css';` in the frontmatter. Without this, Tailwind classes won't work.
 - Slot for page content
 - Footer component at bottom
+
+```astro
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+---
+```
 
 ### Hero.astro
 **Data needed:** `introduced-by-agents.md` one-line summary OR first report's summary section
@@ -82,14 +93,24 @@ npm install tailwindcss @tailwindcss/vite
 - Can include profile image if provided in `materials/`
 - Note: Career timeline goes in Career.astro, not here
 
-### Career.astro
+### Career.astro (landing page preview)
 **Data needed:** Resume file from `materials/` — specifically career/experience sections
 **Required:** No (only if resume contains career history)
-**Content:**
-- Career timeline: company name, period, role, one-line description
+
+**Important: Keep the landing page focused on "Introduced by My Agents".** Career details are supplementary — show a compact preview on the landing page, with a link to the full career page.
+
+**Landing page content (compact):**
+- Most recent 2-3 roles only (company, period, role — one line each)
+- Total experience summary (e.g., "9년 경력 · 5개 회사 · 2회 팀장")
+- "View full career →" link to `/career` page
+
+### /career page (separate page)
+**Full career timeline page** at `src/pages/career.astro`:
+- Complete career timeline: company name, period, role, one-line description
 - Key achievements per role (1-2 bullet points, quantified where possible)
 - Tech stack badges per role
 - Visual timeline layout (vertical, most recent first)
+- Education section at the bottom
 
 **Connecting career to agent reports:**
 - If a career project overlaps with an agent-reference project report (e.g., same app name, same tech stack), link them visually

@@ -34,8 +34,9 @@ This step gathers all data needed to generate the portfolio. Guide the user thro
 
 **2. Resume / self-introduction (optional)**
 - Ask if they have a resume, CV, or self-intro to include
-- This populates the "About" section
+- This populates the "About" and "Career" sections
 - Any format (markdown, PDF text, plain text)
+- **PDF handling:** Read PDF files directly using your file reading tool (e.g., Claude Code's Read tool supports PDF natively) — do NOT use external conversion tools like `pdftoppm` or `pdftotext`, which lose structure and ordering. Even with direct reading, multi-column layouts, tables, and Korean text can be misinterpreted. Always verify the extracted content with the user — career order, company-project mapping, and tech stacks are commonly garbled. Markdown format is most reliable.
 
 **3. GitHub data (optional)**
 - Check `gh auth status` to see if gh CLI is available
@@ -164,7 +165,7 @@ Based on the approved concept and available data, generate these components:
 |-----------|------------|----------|
 | Hero.astro | aggregated profile or first user-profile report | Yes |
 | About.astro | materials/resume (any format) | Only if resume provided |
-| Career.astro | materials/resume (career/experience section) | Only if resume has career data |
+| Career.astro | materials/resume (career/experience section) | Only if resume has career data. Compact preview on landing, full timeline on `/career` page |
 | AgentReviews.astro | user-profile reports (persona sections) | Yes |
 | Projects.astro | project-*.md reports | Yes |
 | WorkStyle.astro | analysis dimensions from profiles | Yes |

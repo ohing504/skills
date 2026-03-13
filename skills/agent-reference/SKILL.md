@@ -81,7 +81,7 @@ gh repo list --limit 50 --json name,isPrivate,pushedAt,primaryLanguage
 ```
 If `gh` CLI is authenticated, read `references/github-analysis-guide.md` for the full workflow. This includes: contribution calendar (커밋 잔디), per-repo activity, PR patterns, language distribution, and privacy handling for private repos.
 
-**Important**: Always present the repo list to the user and let them choose which repos to include. Private repos default to anonymized — never expose private repo details without explicit consent.
+**Important**: Always present the repo list to the user and let them choose which repos to include. Private repos default to the Private level — never expose private repo details without explicit consent.
 
 #### Discovering Projects
 
@@ -171,22 +171,22 @@ After the user selects projects, ask them to assign a privacy level to each. Thi
 | Level | What appears in reports |
 |-------|------------------------|
 | **Full** | Project name, tech stack, specific observations, code patterns |
-| **Anonymized** | Generic description, tech stack, observations without identifying details |
+| **Private** | Generic description, tech stack, observations without identifying details |
 | **Stats only** | Contribution counts and patterns only |
 | **Excluded** | Not mentioned at all |
 
 **Defaults:**
 - Open source / public projects → Full
-- Private repos, employer projects → **Anonymized** (ask user to confirm)
+- Private repos, employer projects → **Private** (ask user to confirm)
 - Side projects the user owns → Full (unless user says otherwise)
 
 Present like this:
 ```
 Privacy levels for selected projects:
 
-  financial        [Anonymized] — private repo
+  financial        [Private] — private repo
   agentfiles       [Full] — public, open source
-  klming-flutter   [Anonymized] — private, published app
+  klming-flutter   [Private] — private, published app
   klming-fastapi   [Stats only] — private, employer work
 
 Change any? (e.g., "financial to Full", "klming-fastapi to Excluded")
@@ -276,7 +276,7 @@ Reports may be published on a public portfolio site. **Respect each project's pr
 - Secrets: API keys, tokens, passwords, internal URLs, server addresses, database connection strings
 - Security implementation details: RLS function names, auth bypass patterns, SECURITY DEFINER details, error filtering rules — these expand the attack surface of production services
 
-**Avoid for Anonymized/Stats-only projects:**
+**Avoid for Private/Stats-only projects:**
 - Specific business metrics: exact user counts, MAU, revenue, cost figures (use qualitative descriptions like "production-scale service" instead of "3,000+ users, MAU 500+")
 - Internal domain model names and entity names that could identify the project
 - Infrastructure stack details: specific cloud services, container orchestration, CI/CD runner setup

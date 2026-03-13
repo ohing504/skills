@@ -219,7 +219,7 @@ Go through each section with the user:
 **Before deploying, review the site content for sensitive information.** The reports were written for the user's reference — not all content is safe to publish. Walk through this checklist with the user:
 
 - [ ] **PII** — No phone numbers, email addresses, or home addresses on the site (check resume-derived content especially)
-- [ ] **Private repo details** — Reports for private/employer projects should match their assigned privacy level (Full/Anonymized/Stats-only). Check that anonymized projects don't leak identifying details (specific domain names, internal URLs, unique tech combinations)
+- [ ] **Private repo details** — Reports for private/employer projects should match their assigned privacy level (Full/Private/Stats-only). Check that private projects don't leak identifying details (specific domain names, internal URLs, unique tech combinations)
 - [ ] **Business metrics** — No exact user counts, MAU, revenue, or cost figures from private projects (use qualitative descriptions)
 - [ ] **Security details** — No RLS function names, auth implementation patterns, SECURITY DEFINER details, or error filtering rules from production services
 - [ ] **Employer internal systems** — No internal tool names, infrastructure architecture, or vendor integrations that could violate NDA or expose attack surface

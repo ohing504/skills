@@ -128,19 +128,19 @@ Private repos require careful handling. The user may include them for analysis d
 | Level | What appears in reports | Example |
 |-------|------------------------|---------|
 | **Full** | Repo name, description, tech stack, specific observations | "In the MoneyBoard project (Next.js financial app)..." |
-| **Anonymized** | Generic description, tech stack, observations without identifying details | "In a financial web application (Next.js)..." |
+| **Private** | Generic description, tech stack, observations without identifying details | "In a financial web application (Next.js)..." |
 | **Stats only** | Contribution counts and patterns, no project details | "Contributed to 3 additional private projects (142 commits)" |
 | **Excluded** | Not mentioned at all | — |
 
 ### Default behavior
 
 - **Public repos**: Full detail unless user says otherwise
-- **Private repos**: Always ask first. Default to "Anonymized" if user says "include but be careful"
+- **Private repos**: Always ask first. Default to "Private" if user says "include but be careful"
 - **Forked repos**: Note that it's a fork; focus on the user's contributions, not the original project
 
 ### In report text
 
-When referencing anonymized repos:
+When referencing Private-level repos:
 - Replace repo name with a generic descriptor based on primary language and domain
 - Omit URLs, specific file paths, business logic details
 - Keep technical patterns and work style observations (these reveal the person, not the project)
@@ -175,7 +175,7 @@ If the user plans to use `agent-portfolio` to generate a portfolio site, the Git
 
 **Don't equate commit count with productivity.** A single well-architected commit can be more valuable than 50 trivial ones. Use commit data as evidence of patterns, not as a scorecard.
 
-**Don't expose private repo contents.** Even in anonymized mode, be careful about unique technical details that could identify a project (unusual tech stack combinations, very specific domain logic).
+**Don't expose private repo contents.** Even in Private mode, be careful about unique technical details that could identify a project (unusual tech stack combinations, very specific domain logic).
 
 **Don't over-index on GitHub activity.** Many developers do significant work outside GitHub — local projects, other platforms, pre-git-history work. GitHub data supplements the analysis; it doesn't define it.
 

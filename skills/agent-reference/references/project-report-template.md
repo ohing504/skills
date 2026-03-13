@@ -76,7 +76,7 @@ If GitHub data is available for this repo, also include:
 - **Issue management**: How they track and describe work
 - **CI/CD engagement**: How they interact with automated checks
 
-See `github-analysis-guide.md` for `gh` CLI commands. For private repos, respect the user's chosen privacy level (full/anonymized/stats-only/excluded).
+See `github-analysis-guide.md` for `gh` CLI commands. For private repos, respect the user's chosen privacy level (full/private/stats-only/excluded).
 
 If you don't have git or GitHub access, skip this section.
 

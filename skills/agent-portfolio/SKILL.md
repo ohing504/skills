@@ -158,6 +158,15 @@ npm install tailwindcss @tailwindcss/vite
 
 > **Warning:** Do NOT use `npx astro add tailwind` — it installs `@astrojs/tailwind` (Tailwind 3 integration) which conflicts with Tailwind 4. Install `@tailwindcss/vite` directly instead.
 
+### Optional: Enhanced Design Quality
+
+If the `frontend-design` skill is available in the current environment, invoke it during component implementation for production-grade styling and modern design patterns. This produces more polished, distinctive results — avoiding generic AI aesthetics.
+
+- **Available:** Invoke `frontend-design` after concept approval, before generating components. Let it guide component styling, layout composition, and interaction design alongside the concept theme.
+- **Not available:** The built-in concept themes and site-structure-guide provide a complete design system. The site will still look good.
+
+This is an optional enhancement, not a dependency. The skill is never required to run agent-portfolio.
+
 ### Generate Components
 
 Based on the approved concept and available data, generate these components:
